@@ -47,7 +47,7 @@ jobs:
   build:
     needs: resolve-version
     name: Build
-    uses: open-img-cloud/.github/.github/workflows/build-libguestfs-image.yml@main
+    uses: open-img-cloud/.github/.github/workflows/build-libguestfs-image.yml@feat/test-images  # TEMP: back to @main once .github PR 55 is merged
     with:
       os_name: cirros
       version: ${{ needs.resolve-version.outputs.version }}
@@ -70,6 +70,7 @@ jobs:
       # Both inputs are proposed in .github (see the cirros onboarding patch):
       # this workflow fails on an unknown input until that patch is merged.
       contract: minimal
+      shared_actions_ref: feat/test-images  # TEMP: remove once .github PR 55 is merged
       runtime_smoke_login_user: cirros
       publish: ${{ inputs.publish == true || github.event_name == 'push' }}
       sync_latest: true
